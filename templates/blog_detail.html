@@ -1,0 +1,229 @@
+{% extends 'base1.html' %}
+{% load staticfiles %}
+{% block title %} How to create a Django website from scratch ? {% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/blogdetail.css' %}">
+{% endblock %}
+
+{% block controller %}BlogController{% endblock %}
+
+{% block leftbar %}
+    <h3>
+                    <a href="">Blog Post Template for Bootstrap</a>
+                </h3>
+                <p><i class="fa fa-user"></i> by <a href="">Super User</a> - <a href="">6 days ago </a> - <a href="">5 comments</a>
+                </p>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <div class="thumbnail pull-right" style="width:60%;">
+                            <img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
+                        </div>
+                    </div>
+                    <div class="col-sm-10">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <strong>Super User</strong> <span class="text-muted">posted 5 days ago</span>
+                            </div>
+                            <div class="panel-body">
+                            <markdown>
+                                Hi,
+                                ```
+                                class RedisManager{
+                                    }
+                                    object RedisManager {
+                                      val redis = Redis(host, port, password)
+                                      redis.select(db);
+
+                                      def get(key:String) : Promise[String] = {
+                                          Promise.wrap(
+                                            redis.get(key).map {
+                                              result => result.orNull
+                                            }
+                                          )
+                                      }
+                                    }
+                                ```
+                                -Hoang Long
+                            </markdown>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <div class="thumbnail pull-right" style="width:40%;">
+                            <img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
+                        </div>
+                    </div>
+                    <div class="col-sm-10">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <strong>jastice</strong> <span class="text-muted">posted 6 days ago</span>
+                            </div>
+                            <div class="panel-body">
+                            <p>
+                                About Cluster: Please try my fork at https://github.com/1and1/scredis/tree/cluster
+    It has a working cluster implementation, but is still a little rough and I would appreciate feedback about anything not working correctly.
+                            </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <div class="thumbnail pull-right" style="width:40%;">
+                            <img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
+                        </div>
+                    </div>
+                    <div class="col-sm-10">
+                          <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <strong>Super User</strong> <span class="text-muted">posted 5 days ago</span>
+                            </div>
+                            <div class="panel-body">
+                            <p>
+                                Hi,
+
+                                I am not sure how i could check if current redis connection is still connected. Could you tell me some idea to have this feature?
+
+                                I do this because i need to pickup other redis instances instead of the failed one.
+
+                                I hope this tool will support cluster soon.
+
+                                thank you,
+
+                                -Hoang Long
+                            </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <div class="thumbnail pull-right" style="width:40%;">
+                            <img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
+                        </div>
+                    </div>
+                    <div class="col-sm-10">
+                          <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <strong>Super User</strong> <span class="text-muted">posted 5 days ago</span>
+                            </div>
+                            <div class="panel-body">
+                            <markdown>
+                                # Hello World!
+                                `angularJs` is a superheroic MVVM framework
+                                As Kanye West said:
+
+                                > We're living the future so
+                                > the present is our past.
+                                First Header | Second Header
+                                ------------ | -------------
+                                Content from cell 1 | Content from cell 2
+                                Content in the first column | Content in the second column
+                            </markdown>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <div class="thumbnail pull-right" style="width:40%;">
+                            <img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
+                        </div>
+                    </div>
+                    <div class="col-sm-10">
+                          <div class="panel panel-default">
+                            <div class="panel-heading">
+                                &nbsp;
+                            </div>
+                            <div class="panel-body">
+                                <div style="margin-top:-50px;">
+                                    <ul class="nav nav-tabs" role="tablist">
+                                      <li class="active"><a href="#home" role="tab" data-toggle="tab">Home</a></li>
+                                      <li><a href="#preview" role="tab" data-toggle="tab">Preview</a></li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div class="tab-pane active" id="home">
+                                             <div class="form-group">
+                                              <label for="comment">Comment:</label>
+                                              <textarea class="form-control" rows="5" id="comment" ng-model="markdownText"></textarea>
+                                            </div>
+
+                                        </div>
+                                        <div class="tab-pane" id="preview">
+                                            <markdown markdown-model="markdownText"></markdown>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <button type="button" class="btn btn-success pull-right">Comment</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+{% endblock %}
+
+{% block sidebar %}
+    <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <h2>Popular language</h2>
+                <div class="list-group">
+                    <a href="#" class="list-group-item active"><span class="badge">14</span>C#</a>
+                    <a href="#" class="list-group-item"><span class="badge">14</span>Java</a>
+                    <a href="#" class="list-group-item"><span class="badge">14</span>Javascript</a>
+                    <a href="#" class="list-group-item"><span class="badge">14</span>AngularJS</a>
+                    <a href="#" class="list-group-item"><span class="badge">14</span>Linux</a>
+                    <a href="#" class="list-group-item"><span class="badge badge-primary">38</span>Morbi leo risus</a>
+                </div>
+                <br>
+                <br>
+                <h2>Popular post</h2>
+                 <ul class="list-group">
+                  <li class="list-group-item">First item</li>
+                  <li class="list-group-item">Second item</li>
+                  <li class="list-group-item">Third item</li>
+                  <li class="list-group-item">Fourth item</li>
+                </ul>
+                <br>
+                <br>
+                <h2>Related questions</h2>
+                <ul class="list-group">
+                  <li class="list-group-item"><a href="http://google.com" target="_blank">Hi, I am not sure how i could check if current redis connection is still connected</a></li>
+                  <li class="list-group-item">Second item</li>
+                  <li class="list-group-item">Third item</li>
+                  <li class="list-group-item">Fourth item</li>
+                </ul>
+{% endblock %}
+
+
+{% load compress %}
+{% compress js %}
+{% block javascript %}
+    <script src="{% static 'js/jquery-1.10.1.min.js' %}" type="text/javascript"></script>
+    <script src="{% static '/js/bootstrap.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'js/angular.js' %} " type="text/javascript"></script>
+    <script src="{% static 'js/angular-sanitize.js' %} " type="text/javascript"></script>
+    <script src="{% static 'js/angular-route.js' %}" type="text/javascript"></script>
+    <script src="{% static 'js/showdown.js' %}" type="text/javascript"></script>
+    <script src="{% static 'js/github.js' %}" type="text/javascript"></script>
+    <script src="{% static 'js/google-prettify.js' %}" type="text/javascript"></script>
+    <script src="{% static 'js/twitter.js' %}" type="text/javascript"></script>
+    <script src="{% static 'js/angular-markdown-text.js' %}" type="text/javascript"></script>
+    <script src="{% static 'js/angular-logo.js'%}" type="text/javascript"></script>
+    <script src="{% static 'js/github-logo.js' %}" type="text/javascript"></script>
+    <script src="{% static 'js/app.js' %}" type="text/javascript"></script>
+{% endblock %}
+{% endcompress %}

@@ -1,0 +1,17 @@
+{% load compress %}
+{% load staticfiles %}
+
+{% compress js %}
+
+    <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/angular.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery-1.10.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/angular-cookies.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/angular-route.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/ask2code.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/ask2code.config.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/ask2code.routes.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/authentication/authentication.module.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/authentication/services/authentication.service.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/authentication/controllers/register.controller.js' %}"></script>
+{% endcompress %}

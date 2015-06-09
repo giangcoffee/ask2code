@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ask2code">
+<head>
+    {% load staticfiles %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="{% static 'img/favicon2.ico' %}">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>{%block title %}{% endblock %}</title>
+    {% block css %}{% endblock %}
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body ng-controller="{% block controller %}{% endblock %}">
+    <nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <img src="{% static 'img/Ask2Code(3).png' %}" class="img-responsive" alt="Brand image">
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li><a href="#">Câu hỏi</a></li>
+                        <li><a href="#">Hướng dẫn</a></li>
+                        <li><a href="">Tin tức</a></li>
+                        <li><a href="">Đặt câu hỏi</a></li>
+                        <li><a href="">Viết hướng dẫn</a></li>
+                        <li><a href="">Viết blog</a></li>
+                    </ul>
+                    <form class="navbar-form navbar-left" role="search">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="{% block search_placeholder %}Search{% endblock %}">
+                            <div class="icon-search"></div>
+                        </div>
+                        <button type="submit" class="btn btn-default">Tìm</button>
+                    </form>
+                    <ul class="nav navbar-nav navbar-right" ng-hide="showLogin">
+                        <li><a href="">Đăng ký</a></li>
+                        <li><a href="">Đăng nhập</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right" ng-show="showLogin">
+                        <li><a href=""><[ username ]></a></li>
+                        <li><a href="">Đăng xuất</a></li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+    <div class="container vertical-center top-buffer">
+        <div class="row">
+            <div class="col-sm-9 pad-top-40">
+                {% block leftbar %}{% endblock %}
+            </div>
+            <div class="col-sm-3 pull-right">
+                {% block sidebar %}{% endblock %}
+            </div>
+        </div>
+    </div>
+    <!-- footer -->
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="col-sm-4">
+                <div class="footer-logo"><img src="{% static 'img/Ask2Code.png' %}"/></div>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <p>Copyright &copy; 2015 Ask2Code. All rights reserved.</p>
+            </div>
+            <div class="col-sm-2">
+                <dl class="footer-nav">
+                    <dt class="nav-title">PORTFOLIO</dt>
+                    <dd class="nav-item"><a href="#">Web Design</a></dd>
+                    <dd class="nav-item"><a href="#">Branding &amp; Identity</a></dd>
+                    <dd class="nav-item"><a href="#">Mobile Design</a></dd>
+                    <dd class="nav-item"><a href="#">Print</a></dd>
+                    <dd class="nav-item"><a href="#">User Interface</a></dd>
+                </dl>
+            </div>
+            <div class="col-sm-2">
+                <dl class="footer-nav">
+                    <dt class="nav-title">ABOUT</dt>
+                    <dd class="nav-item"><a href="#">The Company</a></dd>
+                    <dd class="nav-item"><a href="#">History</a></dd>
+                    <dd class="nav-item"><a href="#">Vision</a></dd>
+                </dl>
+            </div>
+            <div class="col-sm-2">
+                <dl class="footer-nav">
+                    <dt class="nav-title">GALLERY</dt>
+                    <dd class="nav-item"><a href="#">Flickr</a></dd>
+                    <dd class="nav-item"><a href="#">Picasa</a></dd>
+                    <dd class="nav-item"><a href="#">iStockPhoto</a></dd>
+                    <dd class="nav-item"><a href="#">PhotoDune</a></dd>
+                </dl>
+            </div>
+            <div class="col-sm-2">
+                <dl class="footer-nav">
+                    <dt class="nav-title">CONTACT</dt>
+                    <dd class="nav-item"><a href="#">Basic Info</a></dd>
+                    <dd class="nav-item"><a href="#">Map</a></dd>
+                    <dd class="nav-item"><a href="#">Conctact Form</a></dd>
+                </dl>
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="col-sm-3 pull-right social-margin-top">
+                <div class="text-center center-block">
+                <a href="https://www.facebook.com/bootsnipp"><i id="social" class="fa fa-facebook-square fa-3x social-fb"></i></a>
+                <a href="https://twitter.com/bootsnipp"><i id="social" class="fa fa-twitter-square fa-3x social-tw"></i></a>
+                <a href="https://plus.google.com/+Bootsnipp-page"><i id="social" class="fa fa-google-plus-square fa-3x social-gp"></i></a>
+                <a href="mailto:bootsnipp@gmail.com"><i id="social" class="fa fa-envelope-square fa-3x social-em"></i></a>
+            </div>
+            </div>
+        </div>
+    </div>
+    <!-- end footer -->
+    {% block javascript %}{% endblock %}
+</body>
+</html>
