@@ -52,13 +52,21 @@
                         <li><a href="">Đăng nhập</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right" ng-show="showLogin">
-                        <li><a href=""><[ username ]></a></li>
-                        <li><a href="">Đăng xuất</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><[ username ]> <span class="caret"></span></a>
+                            <ul class="dropdown-menu pull-right" role="menu">
+                                <li><a href="/user/preferences"><span class="glyphicon glyphicon-cog"></span> Preferences</a></li>
+                                <li class="divider"></li>
+                                <li><a href="/help/support"><span class="glyphicon glyphicon-bullhorn"></span> Message</a></li>
+                                <li class="divider"></li>
+                                <li><a href="/auth/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
         </nav>
-    <div class="container vertical-center top-buffer">
+    <div class="container top-buffer">
         <div class="row">
             <div class="col-sm-9 pad-top-40">
                 {% block leftbar %}{% endblock %}

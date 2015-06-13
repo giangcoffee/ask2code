@@ -15,16 +15,26 @@ Including another URLconf
 """
 from django.conf.urls import include, url, patterns
 from rest_framework_nested import routers
-from authentication.views import AccountViewSet, LoginView
-from ask2code.views import IndexView, SignInView, SignUpView
+from authentication.views import AccountViewSet, LoginView, LogoutView
+from ask2code.views import IndexView, SignInView, SignUpView, NewBlogView
+from post.views import PostViewSet, AccountPostsViewSet
 
 router = routers.SimpleRouter()
 router.register(r'accounts', AccountViewSet)
+router.register(r'posts', PostViewSet)
+
+accounts_router = routers.NestedSimpleRouter(
+    router, r'accounts', lookup='account'
+)
+accounts_router.register(r'posts', AccountPostsViewSet)
 
 urlpatterns = patterns('',
     url(r'^api/v1/', include(router.urls)),
-    url(r'^api/v1/auth/login/$', LoginView.as_view(), name='login'),
+    url(r'^api/v1/', include(accounts_router.urls)),
+    url(r'^api/v1/auth/login/$', LoginView.as_view(), name='log_in'),
+    url(r'^api/v1/auth/logout/$', LogoutView.as_view(), name='log_out'),
     url(r'^/*$', IndexView.as_view(), name='index'),
-    url(r'^signin*$', SignInView.as_view(), name='signin'),
-    url(r'^signup*$', SignUpView.as_view(), name='signup'),
+    url(r'^sign_in*$', SignInView.as_view(), name='sign_in'),
+    url(r'^sign_up*$', SignUpView.as_view(), name='sign_up'),
+    url(r'^new_blog*$', NewBlogView.as_view(), name='new_blog'),
 )

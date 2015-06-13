@@ -19,3 +19,10 @@ class SignUpView(TemplateView):
 
     def get(self, request):
         return render(request, self.template_name)
+
+class NewBlogView(TemplateView):
+    template_name = 'create_blog.html'
+
+    def get(self, request):
+        return render(request, self.template_name)
+

@@ -1,4 +1,4 @@
-var app = angular.module('ask2code', ['ngCookies'],
+var app = angular.module('ask2code', ['ngCookies', 'angular-ladda'],
  // Change interpolation symbols
  function ($interpolateProvider) {
     $interpolateProvider.startSymbol('<[');
@@ -13,45 +13,31 @@ app.config(['$httpProvider', function($httpProvider) {
 ]);
 
 app.controller("RegisterController", function($scope, $http, $cookies){
-
-    $scope.Years = years;
-$scope.Months = months;
-$scope.Days = days;
+    $scope.loading = false;
     $scope.email = '';
+    $scope.username = '';
+    $scope.first_name = '';
+    $scope.last_name = '';
     $scope.password = '';
+    $scope.retype_password = '';
 
-    $scope.login = function(){
-        console.log('email -> ' + $scope.email + ' password -> ' + $scope.password);
+    $scope.register = function(){
+        $scope.loading = true;
         var data = {};
         data.email = $scope.email;
+        data.username = $scope.username;
+        data.first_name = $scope.first_name;
+        data.last_name = $scope.last_name;
+        data.username = $scope.username;
         data.password = $scope.password;
-        $http.post('/api/v1/auth/login/', $scope.param(data)).
+        $http.post('/api/v1/accounts/', $scope.param(data)).
         then(function(data, status, headers, config) {
-            $scope.setAuthenticatedAccount(data.data);
-            window.location = '/';
+            $scope.loading = false;
+            window.location = '/signin';
         }, function(data, status, headers, config) {
+            $scope.loading = false;
             console.error('Epic failure!');
         });
-    };
-
-    $scope.getAuthenticatedAccount = function getAuthenticatedAccount() {
-      if (!$cookies.authenticatedAccount) {
-        return;
-      }
-
-      return JSON.parse($cookies.authenticatedAccount);
-    };
-
-    $scope.isAuthenticated = function isAuthenticated() {
-      return !!$cookies.authenticatedAccount;
-    };
-
-    $scope.setAuthenticatedAccount = function setAuthenticatedAccount(account) {
-      $cookies.authenticatedAccount = JSON.stringify(account);
-    };
-
-    $scope.unauthenticate = function unauthenticate() {
-      delete $cookies.authenticatedAccount;
     };
 
     $scope.param = function(obj)

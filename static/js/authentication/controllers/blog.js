@@ -1,9 +1,29 @@
-var app = angular.module('ask2code', ['ngCookies', 'angular-ladda'],
+var app = angular.module('ask2code', ['markdown', 'ngSanitize', 'ngCookies'],
  // Change interpolation symbols
  function ($interpolateProvider) {
     $interpolateProvider.startSymbol('<[');
     $interpolateProvider.endSymbol(']>');
 });
+
+app.config(['$locationProvider', function($location) {
+  $location.hashPrefix('!');
+}]);
+
+app.config(["markdownConfig", function (markdownConfig) {
+  markdownConfig = {
+  // Outline static markup
+  outline: true,
+  // Escape html
+  escapeHtml: false,
+  // Sanitize html,
+  sanitize: true,
+  // Showdown options
+  showdown: {
+    extensions: [
+	'github']
+  }
+};
+}]);
 
 app.config(['$httpProvider', function($httpProvider) {
     $httpProvider.defaults.xsrfCookieName = 'csrftoken';
@@ -63,44 +83,29 @@ app.config(['$httpProvider', function($httpProvider) {
   }
 ]);
 
-app.controller("LoginController", function($scope, $http, $cookies){
-    $scope.loading = false;
-    $scope.email = '';
-    $scope.password = '';
+app.controller('BlogController', ["$scope", "$cookies", "$http", function ($scope, $cookies, $http) {
+    $scope.showLogin = !!$cookies.authenticatedAccount;
+    $scope.username = '';
 
-    $scope.login = function(){
-         $scope.loading = true;
+    if($scope.showLogin) {
+        var account = JSON.parse($cookies.authenticatedAccount);
+        $scope.username = account.username;
+    }
+
+    $scope.title = '';
+    $scope.content = '';
+    $scope.tags = '';
+
+    $scope.submit = function(){
         var data = {};
-        data.email = $scope.email;
-        data.password = $scope.password;
-        $http.post('/api/v1/auth/login/', data).
+        data.title = $scope.title;
+        data.content = $scope.content;
+        data.tags = $scope.tags;
+        $http.post('/api/v1/posts/', data).
         then(function(data, status, headers, config) {
-            $scope.loading = false;
-            $scope.setAuthenticatedAccount(data.data);
             window.location = '/';
         }, function(data, status, headers, config) {
-             $scope.loading = false;
             console.error('Epic failure!');
         });
-    };
-
-    $scope.getAuthenticatedAccount = function getAuthenticatedAccount() {
-      if (!$cookies.authenticatedAccount) {
-        return;
-      }
-
-      return JSON.parse($cookies.authenticatedAccount);
-    };
-
-    $scope.isAuthenticated = function isAuthenticated() {
-      return !!$cookies.authenticatedAccount;
-    };
-
-    $scope.setAuthenticatedAccount = function setAuthenticatedAccount(account) {
-      $cookies.authenticatedAccount = JSON.stringify(account);
-    };
-
-    $scope.unauthenticate = function unauthenticate() {
-      delete $cookies.authenticatedAccount;
-    };
-});
+    }
+}]);
